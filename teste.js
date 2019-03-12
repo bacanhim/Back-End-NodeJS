@@ -1,0 +1,3 @@
+function inverso(data) {
+    
+}
