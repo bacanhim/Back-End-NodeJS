@@ -34,18 +34,61 @@ var arrayUtils = {
         media = media / array.length;
         return media;
     },
-    indexOf: function(array,pos){
-        res = array[pos];
+    indexOf: function (array, num) {
+        res = null;
+        for (i = 0; i < array.length; i++) {
+            if (num == array[i]) {
+                res = i;
+            }
+        }
         return res;
     },
-    subArray: function(array,startIndex,endIndex){
-        subArray = ["["];
-        for (i = startIndex; i<= endIndex; i++){
-            subArray+= array[i]+ ",";
+    subArray: function (array, startIndex, endIndex) {
+        subArray = ["[ "];
+        for (i = startIndex; i <= endIndex; i++) {
+            subArray += array[i] + " ";
         }
         subArray += "]"
         return subArray;
+    },
+    isSameLength: function (a1, a2) {
+        if (a1.length == a2.length) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    reverse: function (array) {
+        arrayNovo = [];
+        for (j = array.length - 1; j >= 0; j--) {
+            arrayNovo += array[j] + " ";
+        }
+        return arrayNovo;
+    },
+    swap: function (array, index1, index2) {
+        var a = array[index1];
+        array[index1] = array[index2];
+        array[index2] = a;
+        return array;
+    },
+    contains: function (array, value) {
+        for (i = 0; i < array.length; i++) {
+            if (array[i] == value) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    },
+    concatenate: function (a1, a2) {
+        var novoArray = [];
+        for (i = 0; i < a1.length; i++) {
+            novoArray += a1[i] + ' ';
+        }
+        for (i = 0; i < a2.length; i++) {
+            novoArray += a2[i] + ' ';
+        }
+        return novoArray;
     }
 }
-
 module.exports = arrayUtils;
