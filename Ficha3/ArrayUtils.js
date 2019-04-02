@@ -44,11 +44,10 @@ var arrayUtils = {
         return res;
     },
     subArray: function (array, startIndex, endIndex) {
-        subArray = ["[ "];
+        subArray = [];
         for (i = startIndex; i <= endIndex; i++) {
-            subArray += array[i] + " ";
+            subArray.push(array[i]);
         }
-        subArray += "]"
         return subArray;
     },
     isSameLength: function (a1, a2) {
@@ -61,7 +60,7 @@ var arrayUtils = {
     reverse: function (array) {
         arrayNovo = [];
         for (j = array.length - 1; j >= 0; j--) {
-            arrayNovo += array[j] + " ";
+            arrayNovo.push(array[j]);
         }
         return arrayNovo;
     },
@@ -70,7 +69,7 @@ var arrayUtils = {
         array[index1] = array[index2];
         array[index2] = a;
         return array;
-    },
+    }, 
     contains: function (array, value) {
         for (i = 0; i < array.length; i++) {
             if (array[i] == value) {
@@ -83,10 +82,10 @@ var arrayUtils = {
     concatenate: function (a1, a2) {
         var novoArray = [];
         for (i = 0; i < a1.length; i++) {
-            novoArray += a1[i] + ' ';
+            novoArray.push(a1[i]);
         }
         for (i = 0; i < a2.length; i++) {
-            novoArray += a2[i] + ' ';
+            novoArray.push(a2[i]);
         }
         return novoArray;
     }
