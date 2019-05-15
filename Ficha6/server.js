@@ -48,8 +48,13 @@ app.get("/log", function (request, response) {
     response.end(log);
 });
 
-app.get("/log", function (request, response) {
+app.get("/download", function (request, response) {
     writeLog(request,response);
-    var log = fs.readFileSync("log.txt","utf-8");
-    response.end(log);
+    var a = "log.txt";
+    response.download(a);
+});
+
+app.get("/delete", function (request, response) {
+    fs.unlink("log.txt");
+    response.end("Ficheiro eliminado com sucesso!");
 });
