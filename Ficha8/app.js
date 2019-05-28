@@ -17,7 +17,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
-require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport.js')(passport); // pass passport for configuration
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // express server
@@ -26,4 +26,6 @@ var server = app.listen(3000, function () {
     var port = server.address().port  
     console.log("Example app listening at http://%s:%s", host, port);   
 });
+
+
 
