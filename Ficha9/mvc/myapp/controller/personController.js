@@ -12,7 +12,7 @@ exports.author_detail = function (req,res,next){
     var userId = req.params.id;
     connection.query("SELECT * FROM `persons` where `id` = ?",[userId], function (err, result, fiels) {
         if (err) throw err;
-        // res.render('person',{title : 'Person Detail',person: result[0]});
-        res.send(result[0]);
+        res.render('persons',{title : 'Person Detail',person: result[0]});
+        // res.send(result[0]);
     });
 }
