@@ -9,17 +9,10 @@ app.use(morgan('tiny'));
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.json({
-        message: 'Hello World!'
-    });
-});
-
-app.get('/test', (req, res) => {
-    res.json({
-        message: 'dawdawd'
-    });
-});
+// require('./config/passport.js')(passport);
+// require('./app/routes.js')(app, passport);
+var connection = require('./app/database.js');
+connection.connect()
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
