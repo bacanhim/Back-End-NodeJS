@@ -1,4 +1,10 @@
 module.exports = function (app, passport) {
+    function isLoggedIn(req, res, next) {
+    
+        if (req.isAuthenticated())
+            return next();
+        res.redirect('/');
+    }
     app.post('/login', passport.authenticate('local-login', {
             successRedirect: '/feed',
             failureRedirect: '/',
@@ -14,43 +20,19 @@ module.exports = function (app, passport) {
             }
             res.redirect('/');
         });
-
-    // =====================================
-    // SIGNUP ==============================
-    // =====================================
-    app.get('/signup', function (req, res) {
-        res.render('signup.ejs', {
-            message: req.flash('signupMessage')
-        });
-    });
-
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/feed',
         failureRedirect: '/',
         failureFlash: true
     }));
-
-    // =====================================
-    // PROFILE SECTION =========================
-    // =====================================
     app.get('/profile', isLoggedIn, function (req, res) {
-        res.render('profile.ejs', {
-            user: req.user
-        });
+        
     });
-
-    // =====================================
-    // LOGOUT ==============================
-    // =====================================
+    app.get('/feed', isLoggedIn, function (req, res) {
+        
+    });
     app.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/');
     });
 };
-
-function isLoggedIn(req, res, next) {
-
-    if (req.isAuthenticated())
-        return next();
-    res.redirect('/');
-}

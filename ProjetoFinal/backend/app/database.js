@@ -5,4 +5,5 @@ var connection = mysql.createConnection({
         password: '',
         database: 'basededadosbacke'
 });
+console.log("MySQL connection created at %s with database: %s", connection.config.host, connection.config.database);
 module.exports = connection;
