@@ -14,7 +14,7 @@ module.exports = function (passport) {
     });
 
     passport.deserializeUser(function (id, done) {
-        connection.query("select * from users where id = " + id, function (err, rows) {
+        connection.query("select * from perfil where id = " + id, function (err, rows) {
             done(err, rows[0]);
         });
     });
@@ -29,7 +29,7 @@ module.exports = function (passport) {
                 passReqToCallback: true 
             },
             function (req, email, password, done) {
-                connection.query("SELECT * FROM users WHERE email = ?", [email], function (err, rows) {
+                connection.query("SELECT * FROM perfil WHERE email = ?", [email], function (err, rows) {
                     if (err)
                         return done(err);
                     if (rows.length) {
@@ -40,7 +40,7 @@ module.exports = function (passport) {
                             password: password
                         };
 
-                        var insertQuery = "INSERT INTO users ( email, password ) values (?,?)";
+                        var insertQuery = "INSERT INTO perfil ( email, password ) values (?,?)";
 
                         connection.query(insertQuery, [newUserMysql.email, newUserMysql.password], function (err, rows) {
                             newUserMysql.id = rows.insertId;
@@ -61,7 +61,7 @@ module.exports = function (passport) {
             passReqToCallback: true 
         },
         function (req, email, password, done) {
-            connection.query("SELECT * FROM `users` WHERE `email` = '" + email + "'", function (err, rows) {
+            connection.query("SELECT * FROM `perfil` WHERE `email` = '" + email + "'", function (err, rows) {
                 if (err)
                     return done(err);
                 if (!rows.length) {

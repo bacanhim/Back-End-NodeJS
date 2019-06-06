@@ -18,11 +18,9 @@ module.exports = function (app, passport) {
     // =====================================
     // SIGNUP ==============================
     // =====================================
-    app.get('/signup', function (req, res) {
-        res.render('signup.ejs', {
-            message: req.flash('signupMessage')
-        });
-    });
+    app.get("/",function(req,res){
+        res.send("aaaa");
+    })
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/feed',
