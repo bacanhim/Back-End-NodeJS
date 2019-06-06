@@ -21,8 +21,6 @@ app.use(flash());
 
 require('./config/passport.js')(passport);
 require('./app/routes.js')(app, passport);
-// var connection = require('./app/database.js');
-// connection.connect()
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

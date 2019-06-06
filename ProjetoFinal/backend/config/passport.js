@@ -1,8 +1,6 @@
 var connection = require('../app/database.js');
 var LocalStrategy = require('passport-local').Strategy;
 
-console.log("MySQL connection created at %s with database: %s", connection.config.host, connection.config.database);
-
 // expose this function to our app using module.exports
 module.exports = function (passport) {
 
@@ -33,7 +31,7 @@ module.exports = function (passport) {
                     if (err)
                         return done(err);
                     if (rows.length) {
-                        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                        return done(null, false, req.flash('signupMessage', 'Este email encontra-se registado. Selecione outro ou entre na sua conta.'));
                     } else {
                         var newUserMysql = {
                             email: email,
@@ -65,11 +63,11 @@ module.exports = function (passport) {
                 if (err)
                     return done(err);
                 if (!rows.length) {
-                    return done(null, false, req.flash('loginMessage', 'No user found.'));
+                    return done(null, false, req.flash('loginMessage', 'Utilizador nao existe ou email/password errada'));
                 }
 
                 if (!(rows[0].password == password))
-                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+                    return done(null, false, req.flash('loginMessage', 'Utilizador nao existe ou email/password errada'));
                 return done(null, rows[0]);
 
             });
